@@ -11,7 +11,7 @@ const PokemonCard = ({ name, id, types, sprites, setSelectedPokemon, pokemon, se
             <div className='flex gap-[3px] pt-3 max-lg:flex-col'>
                 {types.map((item, index) => {
                     const color = getTypeColor(item.type.name);
-                    return (<div key={index} className={`${color} capitalize rounded-lg px-2 py-[2px] text-sm max-sm:text-xs w-min`}><p>{item.type.name}</p></div>)
+                    return (<div key={index} className={`${color} capitalize rounded-lg px-2 py-[2px] text-sm max-sm:text-xs w-min`}>{item.type.name}</div>)
                 })}
             </div>
         </div>

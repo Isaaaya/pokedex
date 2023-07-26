@@ -25,18 +25,19 @@ function App() {
           setPokemons((currentPokemons) => [...currentPokemons, res.data])
         })
         .then(() => setIsLoading(false))
-        .catch((error) => console.log(error))
+        .catch((error) => console.log(error));
     })
   };
 
   const filterPokemonsByType = (pokemonType) => {
     if (pokemonType === 'clear') setPokemons(allPokemons);
     else {
+      setSelectedPokemon({});
       setPokemonDetails({});
       const filteredPokemons = [];
       for (const pokemon of allPokemons) {
         for (const item of pokemon.types) {
-          if (item.type.name === pokemonType) filteredPokemons.push(pokemon)
+          if (item.type.name === pokemonType) filteredPokemons.push(pokemon);
         }
       }
       setPokemons(filteredPokemons);
@@ -45,13 +46,13 @@ function App() {
 
   const getPokemonTypes = async () => {
     axios.get('https://pokeapi.co/api/v2/type?limit=999')
-      .then((res) => setPokemonTypes(res.data.results))
+      .then((res) => setPokemonTypes(res.data.results));
   };
 
   const getPokemonDetails = (selectedPokemon) => {
     if (selectedPokemon.name) {
       const types = [];
-      for (const item of selectedPokemon.types) types.push(item.type.name)
+      for (const item of selectedPokemon.types) types.push(item.type.name);
 
       const pokemonDetails = {
         name: selectedPokemon.name,
@@ -65,16 +66,16 @@ function App() {
         speed: selectedPokemon.stats[5].base_stat,
         weight: selectedPokemon.weight,
         totalMoves: selectedPokemon.moves.length,
-      }
+      };
 
       setPokemonDetails(pokemonDetails);
     }
-
+    return;
   }
 
   useEffect(() => {
     getPokemonDetails(selectedPokemon)
-  }, [selectedPokemon])
+  }, [selectedPokemon]);
 
   useEffect(() => {
     setIsLoading(true);

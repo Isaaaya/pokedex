@@ -46,7 +46,7 @@ const PokemonDetailsCard = ({ name, id, types, attack, defense, hp, specialAttac
             <h2 className='text-2xl font-bold m-[15px] max-sm:text-lg'>{name} #{String(id).padStart(3, '0')}</h2>
             <div>
                 {pokemonQualities.map((quality, index) => (
-                    <div key={index} className={`flex items-center min-h-[27px] border-black border max-sm:text-xs ${index !== 0 && 'border-t-0'}`}>
+                    <div key={index} className={`flex items-center min-h-[25px] border-black border max-sm:text-xs ${index !== 0 && 'border-t-0'}`}>
                         <div className='w-[70%] text-center flex items-center justify-center'>{quality.title}</div>
                         <div className='w-[30%] max-sm:w-[35%] text-center border-black border-l-[1px]'>{typeof quality.value === 'number' ? quality.value : types.map((type) => `${type} `)}</div>
                     </div>

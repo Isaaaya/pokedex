@@ -1,5 +1,3 @@
-
-
 export const getTypeColor = (type) => {
     switch (type) {
         case 'normal': return 'bg-[#d9d9d9]'
@@ -25,3 +23,4 @@ export const getTypeColor = (type) => {
         default: return 'bg-[#000814]'
     };
 }
+
