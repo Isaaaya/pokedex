@@ -32,8 +32,6 @@ function App() {
   const filterPokemonsByType = (pokemonType) => {
     if (pokemonType === 'clear') setPokemons(allPokemons);
     else {
-      setSelectedPokemon({});
-      setPokemonDetails({});
       const filteredPokemons = [];
       for (const pokemon of allPokemons) {
         for (const item of pokemon.types) {
@@ -101,7 +99,7 @@ function App() {
               : <p>Sorry, no pokemons to your liking found on this page. Try to load more, change or clear the filter.</p>}
             <button onClick={getPokemons} className='bg-sky-500 text-white font-semibold px-[10px] py-3 rounded-lg text-lg w-[100%] max-sm:w-[85%] mt-[25px]'>Load More</button>
           </div>
-          {pokemonDetails.name && <PokemonDetailsCard image={selectedPokemon.sprites.front_default} {...pokemonDetails} />}
+          {pokemonDetails.name && pokemons.length !== 0 && <PokemonDetailsCard image={selectedPokemon.sprites.front_default} {...pokemonDetails} />}
         </div>
       </>) : (<p>Loading...</p>)}
     </div>
