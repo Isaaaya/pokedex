@@ -16,7 +16,7 @@ function App() {
     const response = await axios(loadMore)
       .catch((error) => console.log(error));
     setLoadMore(response.data.next);
-
+    setActiveType('');
     response.data.results.map(async (pokemon) => {
 
       await axios(pokemon.url)
@@ -83,7 +83,7 @@ function App() {
 
   useEffect(() => {
     if (activeType) filterPokemonsByType(activeType);
-  }, [activeType, allPokemons])
+  }, [activeType])
 
 
   return (
