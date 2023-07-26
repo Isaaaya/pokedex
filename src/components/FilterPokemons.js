@@ -18,7 +18,7 @@ const FilterPokemons = ({ pokemonTypes, activeType, setActiveType, filterPokemon
                             <p className='capitalize'>{type.name}</p>
                         </button>)
                 })}
-                <div onClick={() => setActiveType('clear')} className='border-2 border-black text-white text-center py-1 rounded-xl font-semibold cursor-pointer bg-black min-w-[100px]'>
+                <div onClick={() => setActiveType('clear')} className='border-2 text-white text-center py-1 rounded-xl font-semibold cursor-pointer bg-black min-w-[100px]'>
                     <p className='capitalize'>Clear Filter</p>
                 </div>
             </div>}

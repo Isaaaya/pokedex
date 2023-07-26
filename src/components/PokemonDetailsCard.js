@@ -39,7 +39,7 @@ const PokemonDetailsCard = ({ name, id, types, attack, defense, hp, specialAttac
         },
     ]
     return (
-        <div className='sticky top-20 border-2 border-black capitalize h-fit max-sm:w-1/2 w-[265px] px-[15px] max-sm:px-[10px] mt-[283px] md:ml-[70px] text-center pb-[20px]'>
+        <div className='sticky top-20 border-2 border-black capitalize h-fit max-sm:w-1/2 w-[265px] px-[15px] max-sm:px-[10px] mt-[230px] md:ml-[70px] text-center pb-[20px]'>
             <div className='relative max-sm:h-[120px] h-[200px] max-w-[230px] border-zinc-400 border-2 mt-[13px] m-auto flex justify-center items-center overflow-hidden'>
                 <img src={image} alt={name} />
             </div>

@@ -13,13 +13,14 @@ function App() {
   const [pokemonDetails, setPokemonDetails] = useState({});
 
   const getPokemons = async () => {
-    const response = await axios(loadMore);
+    const response = await axios(loadMore)
+      .catch((error) => console.log(error));
     setLoadMore(response.data.next);
+
     response.data.results.map(async (pokemon) => {
 
       await axios(pokemon.url)
         .then((res) => {
-          setIsLoading(true)
           setAllPokemons((currentPokemons) => [...currentPokemons, res.data]);
           setPokemons((currentPokemons) => [...currentPokemons, res.data])
         })
@@ -31,6 +32,7 @@ function App() {
   const filterPokemonsByType = (pokemonType) => {
     if (pokemonType === 'clear') setPokemons(allPokemons);
     else {
+      setPokemonDetails({});
       const filteredPokemons = [];
       for (const pokemon of allPokemons) {
         for (const item of pokemon.types) {
@@ -47,10 +49,8 @@ function App() {
   };
 
   const getPokemonDetails = (selectedPokemon) => {
-    console.log(selectedPokemon)
     if (selectedPokemon.name) {
       const types = [];
-
       for (const item of selectedPokemon.types) types.push(item.type.name)
 
       const pokemonDetails = {
@@ -72,12 +72,12 @@ function App() {
 
   }
 
-
   useEffect(() => {
     getPokemonDetails(selectedPokemon)
   }, [selectedPokemon])
 
   useEffect(() => {
+    setIsLoading(true);
     getPokemons();
     getPokemonTypes();
   }, [])
@@ -94,10 +94,11 @@ function App() {
       </div>
       {!isLoading ? (<>
         <FilterPokemons activeType={activeType} setActiveType={setActiveType} pokemonTypes={pokemonTypes} filterPokemonsByType={filterPokemonsByType} />
-        <div className='flex w-[85%] max-sm:w-[100%]justify-between'>
+        <div className='flex justify-between w-[85%] max-sm:w-[100%]'>
           <div className='w-1/2'>
-            <PokemonsList pokemons={pokemons} setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} />
-            <button onClick={getPokemons} className='bg-sky-500 text-white font-semibold py-3 rounded-lg text-lg w-[100%] max-sm:w-[85%] mt-[25px] px-[10px]'>Load More</button>
+            {pokemons.length ? <PokemonsList pokemons={pokemons} setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} />
+              : <p>Sorry, no pokemons to your liking found on this page. Try to load more, change or clear the filter.</p>}
+            <button onClick={getPokemons} className='bg-sky-500 text-white font-semibold px-[10px] py-3 rounded-lg text-lg w-[100%] max-sm:w-[85%] mt-[25px]'>Load More</button>
           </div>
           {pokemonDetails.name && <PokemonDetailsCard image={selectedPokemon.sprites.front_default} {...pokemonDetails} />}
         </div>

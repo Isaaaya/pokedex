@@ -11,6 +11,7 @@ const PokemonCards = ({ pokemons, setSelectedPokemon, selectedPokemon }) => {
             )}
         </div>
     )
+
 }
 
 export default PokemonCards
