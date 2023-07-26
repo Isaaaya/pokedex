@@ -95,7 +95,7 @@ function App() {
       </div>
       {!isLoading ? (<>
         <FilterPokemons activeType={activeType} setActiveType={setActiveType} pokemonTypes={pokemonTypes} filterPokemonsByType={filterPokemonsByType} />
-        <div className='flex justify-between w-[85%] max-sm:w-[100%]'>
+        <div className='flex max-lg:justify-between w-[85%] max-sm:w-[100%]'>
           <div className='w-1/2'>
             {pokemons.length ? <PokemonsList pokemons={pokemons} setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} />
               : <p>Sorry, no pokemons to your liking found on this page. Try to load more, change or clear the filter.</p>}
