@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { getTypeColor } from '../utils/index'
+import { MdExpandMore, MdExpandLess } from 'react-icons/md'
 
 const FilterPokemons = ({ pokemonTypes, activeType, setActiveType, filterPokemonsByType }) => {
     const [showFilter, setShowFilter] = useState(false);
 
     return (
         <div className='w-[80%] max-sm:w-[95%]'>
-            <button onClick={() => setShowFilter((prev) => !prev)} className='text-lg font-semibold'>Click here to filter by type</button>
+            <button onClick={() => setShowFilter((prev) => !prev)} className='flex items-center text-lg font-semibold'>FILTER {!showFilter ? <MdExpandMore size={20} /> : <MdExpandLess size={20} />}</button>
             {showFilter && <div className='grid grid-cols-5 gap-[15px] max-sm:gap-[7px] mt-5 py-[20px]'>
                 {pokemonTypes.map((type, index) => {
                     const color = getTypeColor(type.name)
